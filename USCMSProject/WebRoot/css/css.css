@@ -1,0 +1,30 @@
+@CHARSET "UTF-8";
+/*KB表格*/
+.kb_table thead tr {background: url(images/ui-bg_highlight-soft_75_cccccc_1x100.png) repeat-x scroll 50% 50% #FFFFFF;  border-top: 1px solid #AAAAAA; border-bottom: 1px solid #AAAAAA; height:25px;  font-size:12px; font-style:normal;
+    color: #222222;}
+.kb_table thead tr th{ border-right: dotted 1px #666;  font-size:12px;  font-weight:normal; }
+.kb_table  
+{
+    border-style: none;
+    border-color: inherit;
+    border-width: 0px;
+    table-layout:auto; width:100%; 
+    overflow:auto; border-spacing:0; border-collapse:collapse; margin-top:5px;
+    margin-right: 0px;
+   
+     
+     
+}
+.kb_table tr td {  background: #f6f6f6; text-align:left; padding-left: 10px ;height: 29px;line-height: 29px;border-bottom: 1px dotted #cccccc; vertical-align:middle; border-left:1px dotted #cccccc;word-break:break-all;
+                   overflow: hidden;white-space: nowrap;text-overflow: ellipsis;
+                   }
+.kb_table tr.odd td {background: #fbfbfb;}
+.kb_table tr:hover td { background: #fdfcf6; }
+.kb_table tr.kb_tr_title td{ background-color:#dddddd;height:15px; line-height: 15px; }
+.kb_image_Gray { border:solid 1px #cccccc; padding:3px; margin:2px; }
+
+.kb_table tfoot tr { background-color:rgb(244,249,200)}
+body
+{
+ margin:0px;
+}

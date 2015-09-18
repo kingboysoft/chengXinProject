@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+    	
+	<!-- 通过配置文件,配置数据源 --> 
+	<bean id="sessionFactory"
+		class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">
+		<property name="configLocation" value="classpath:hibernate.cfg.xml">
+		</property>
+	</bean>
+	<bean id="hibernateTemplate" class="org.springframework.orm.hibernate3.HibernateTemplate">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+
+	<bean id="dao" class="com.uscms.dao.impl.Dao">
+	</bean>
+	<bean id="service" class="com.uscms.service.impl.ServiceImpl">
+	  <property name="dal" ref="dao"></property>
+	</bean>
+	<!-- 角色 -->
+	<bean id="dal_actor" class="com.uscms.dao.impl.ActorImpl" scope="prototype">
+	</bean>
+	<bean id="actorParent" class="com.uscms.bean.Actor" scope="prototype">
+	</bean>
+	<bean id="bean_actor" class="com.uscms.bean.Actor" scope="prototype">
+		<property name="parent" ref="actorParent"></property>
+		<property name="children">
+			<set></set>
+		</property>
+	</bean>
+	<bean id="actor" class="com.uscms.service.impl.ActorImpl">
+		<property name="dal" ref="dal_actor"></property>
+		<property name="object" ref="bean_actor"></property>
+	</bean>
+	<!-- 系统菜单 -->
+	<bean id="menu_parent" class="com.uscms.bean.SystemMenu" scope="prototype">
+	</bean>
+	<bean id="dal_menu" class="com.uscms.dao.impl.SystemMenuImpl" scope="prototype">
+	</bean>
+	<bean id="bean_menu" class="com.uscms.bean.SystemMenu" scope="prototype">
+		<property name="parent" ref="menu_parent"></property>
+		<property name="children">
+			<set></set>
+		</property>
+	</bean>
+	<bean id="menu" class="com.uscms.service.impl.SystemMenuImpl">
+		<property name="dal" ref="dal_menu"></property>
+		<property name="object" ref="bean_menu"></property>
+	</bean>
+	<!-- 数据词典 -->
+    <bean id="dict_parent" class="com.uscms.bean.Dictionary" scope="prototype">
+	</bean>
+	<bean id="dal_dict" class="com.uscms.dao.impl.DictionaryImpl" scope="prototype">
+	</bean>
+	<bean id="bean_dict" class="com.uscms.bean.Dictionary" scope="prototype">
+		<property name="parent" ref="dict_parent"></property>
+		<property name="children">
+			<set></set>
+		</property>
+	</bean>
+	<bean id="dict" class="com.uscms.service.impl.DictionaryImpl">
+		<property name="dal" ref="dal_dict"></property>
+		<property name="object" ref="bean_dict"></property>
+	</bean>
+	<!-- 用户 -->
+	<bean id="dal_user" class="com.uscms.dao.impl.UsersImpl" scope="prototype">
+	</bean>
+	<bean id="bean_user" class="com.uscms.bean.Users" scope="prototype">		 
+	</bean>
+	<bean id="user" class="com.uscms.service.impl.UsersImpl">
+		<property name="dal" ref="dal_user"></property>
+		<property name="object" ref="bean_user"></property>
+	</bean>
+	<!-- 用户日志 -->
+	<bean id="dal_userlog" class="com.uscms.dao.impl.UsersLogImpl" scope="prototype">
+	</bean>
+	<bean id="bean_userlog" class="com.uscms.bean.UsersLog" scope="prototype">		 
+	 <property name="user" ref="bean_user"></property>
+	</bean>
+	<bean id="userlog" class="com.uscms.service.impl.UsersLogImpl">
+		<property name="dal" ref="dal_userlog"></property>
+		<property name="object" ref="bean_userlog"></property>
+	</bean>
+	
+	<!-- 诚信类型 -->
+	<bean id="dal_credittype" class="com.uscms.dao.impl.CreditTypeImpl" scope="prototype">
+	</bean>
+	<bean id="bean_credittype" class="com.uscms.bean.CreditType" scope="prototype">		 
+	  
+	</bean>
+	<bean id="credittype" class="com.uscms.service.impl.CreditTypeImpl">
+		<property name="dal" ref="dal_credittype"></property>
+		<property name="object" ref="bean_credittype"></property>
+	</bean>
+</beans>
